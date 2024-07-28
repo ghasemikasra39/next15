@@ -8,7 +8,7 @@ import {
 
 export default function Home() {
 	return (
-		<div className="flex gap-6 border-2 border-red-500">
+		<div className="flex gap-6 border-2 border-red-500 pt-6">
 			<div className="hidden w-[20%] border-2 border-green-400 xl:block">
 				<LeftMenu />
 			</div>
