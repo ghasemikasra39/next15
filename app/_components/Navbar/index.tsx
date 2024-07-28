@@ -1,4 +1,10 @@
-import { ClerkLoaded, ClerkLoading, SignedIn, SignedOut } from "@clerk/nextjs"
+import {
+	ClerkLoaded,
+	ClerkLoading,
+	SignedIn,
+	SignedOut,
+	UserButton,
+} from "@clerk/nextjs"
 import Image from "next/image"
 import Link from "next/link"
 
@@ -88,7 +94,7 @@ export const Navbar = () => {
 								width={20}
 							/>
 						</div>
-						{/*<UserButton />*/}
+						<UserButton />
 					</SignedIn>
 					<SignedOut>
 						<div className="flex items-center gap-2 text-sm">
