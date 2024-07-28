@@ -1,3 +1,4 @@
+import { ClerkLoaded, ClerkLoading, SignedIn, SignedOut } from "@clerk/nextjs"
 import Image from "next/image"
 import Link from "next/link"
 
@@ -58,49 +59,49 @@ export const Navbar = () => {
 			</div>
 			{/* RIGHT */}
 			<div className="flex w-[30%] items-center justify-end gap-4 xl:gap-8">
-				{/*<ClerkLoading>*/}
-				{/*	<div className="text-surface inline-block h-4 w-4 animate-spin rounded-full border-2 border-solid border-current border-gray-500 border-e-transparent align-[-0.125em] motion-reduce:animate-[spin_1.5s_linear_infinite] dark:text-white" />*/}
-				{/*</ClerkLoading>*/}
-				{/*<ClerkLoaded>*/}
-				{/*	<SignedIn>*/}
-				{/*		<div className="cursor-pointer">*/}
-				{/*			<Image*/}
-				{/*				alt=""*/}
-				{/*				height={24}*/}
-				{/*				src="/people.png"*/}
-				{/*				width={24}*/}
-				{/*			/>*/}
-				{/*		</div>*/}
-				{/*		<div className="cursor-pointer">*/}
-				{/*			<Image*/}
-				{/*				alt=""*/}
-				{/*				height={20}*/}
-				{/*				src="/messages.png"*/}
-				{/*				width={20}*/}
-				{/*			/>*/}
-				{/*		</div>*/}
-				{/*		<div className="cursor-pointer">*/}
-				{/*			<Image*/}
-				{/*				alt=""*/}
-				{/*				height={20}*/}
-				{/*				src="/notifications.png"*/}
-				{/*				width={20}*/}
-				{/*			/>*/}
-				{/*		</div>*/}
-				{/*		<UserButton />*/}
-				{/*	</SignedIn>*/}
-				{/*	<SignedOut>*/}
-				{/*		<div className="flex items-center gap-2 text-sm">*/}
-				{/*			<Image*/}
-				{/*				alt=""*/}
-				{/*				height={20}*/}
-				{/*				src="/login.png"*/}
-				{/*				width={20}*/}
-				{/*			/>*/}
-				{/*			<Link href="/sign-in">Login/Register</Link>*/}
-				{/*		</div>*/}
-				{/*	</SignedOut>*/}
-				{/*</ClerkLoaded>*/}
+				<ClerkLoading>
+					<div className="text-surface inline-block h-4 w-4 animate-spin rounded-full border-2 border-solid border-current border-gray-500 border-e-transparent align-[-0.125em] motion-reduce:animate-[spin_1.5s_linear_infinite] dark:text-white" />
+				</ClerkLoading>
+				<ClerkLoaded>
+					<SignedIn>
+						<div className="cursor-pointer">
+							<Image
+								alt=""
+								height={24}
+								src="/people.png"
+								width={24}
+							/>
+						</div>
+						<div className="cursor-pointer">
+							<Image
+								alt=""
+								height={20}
+								src="/messages.png"
+								width={20}
+							/>
+						</div>
+						<div className="cursor-pointer">
+							<Image
+								alt=""
+								height={20}
+								src="/notifications.png"
+								width={20}
+							/>
+						</div>
+						{/*<UserButton />*/}
+					</SignedIn>
+					<SignedOut>
+						<div className="flex items-center gap-2 text-sm">
+							<Image
+								alt=""
+								height={20}
+								src="/login.png"
+								width={20}
+							/>
+							<Link href="/sign-in">Login/Register</Link>
+						</div>
+					</SignedOut>
+				</ClerkLoaded>
 				<MobileMenu />
 			</div>
 		</div>
