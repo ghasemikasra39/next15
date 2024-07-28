@@ -1,3 +1,59 @@
 {
-  "extends": "next/core-web-vitals"
+  "parser": "@typescript-eslint/parser",
+  "plugins": [
+    "@typescript-eslint",
+    "cypress",
+    "simple-import-sort",
+    "typescript-sort-keys"
+  ],
+  "extends": [
+    "next/core-web-vitals",
+    "next/core-web-vitals",
+    "plugin:cypress/recommended",
+    "plugin:typescript-sort-keys/recommended"
+  ],
+  "rules": {
+    "react/display-name": "off",
+    "eol-last": ["error", "always"],
+    "no-empty-function": "off",
+    "@typescript-eslint/no-explicit-any": ["error"],
+    "@typescript-eslint/no-empty-function": "off",
+    "@typescript-eslint/no-unused-vars": [
+      "error",
+      {
+        "ignoreRestSiblings": true
+      }
+    ],
+    "@typescript-eslint/quotes": [
+      "warn",
+      "double",
+      {
+        "allowTemplateLiterals": true,
+        "avoidEscape": true
+      }
+    ],
+    "quote-props": ["error", "as-needed"],
+    "curly": ["error", "all"],
+    "react/jsx-sort-props": [
+      "error",
+      {
+        "ignoreCase": true,
+        "callbacksLast": true,
+        "shorthandFirst": true,
+        "shorthandLast": false,
+        "noSortAlphabetically": false,
+        "reservedFirst": true
+      }
+    ],
+    "simple-import-sort/imports": "error",
+    "simple-import-sort/exports": "error",
+    "import/no-duplicates": "error",
+    "import/newline-after-import": "error"
+  },
+  "ignorePatterns": [
+    "node_modules",
+    "__mocks__/**/*",
+    "lint-staged.config.js",
+    "mockServiceWorker.js"
+  ]
 }
