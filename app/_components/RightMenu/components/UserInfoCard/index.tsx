@@ -21,7 +21,7 @@ export const UserInfoCard = async () => {
 				<div className="flex items-center gap-2">
 					<span className="text-xl text-black">
 						{" "}
-						{faker.internet.userName()}
+						{faker.person.fullName()}
 					</span>
 					<span className="text-sm">
 						@{faker.internet.userName()}

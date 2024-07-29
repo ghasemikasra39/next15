@@ -15,14 +15,16 @@ export const UserMediaCard = async () => {
 			</div>
 			{/* BOTTOM */}
 			<div className="flex flex-wrap justify-between gap-4">
-				<div className="relative h-24 w-1/5">
-					<Image
-						fill
-						alt=""
-						className="rounded-md object-cover"
-						src={faker.image.urlPicsumPhotos()}
-					/>
-				</div>
+				{Array.from({ length: 20 }).map((_, index) => (
+					<div key={index} className="relative h-24 w-1/5">
+						<Image
+							fill
+							alt=""
+							className="rounded-md object-cover"
+							src={faker.image.urlPicsumPhotos()}
+						/>
+					</div>
+				))}
 			</div>
 		</div>
 	)

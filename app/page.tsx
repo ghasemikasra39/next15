@@ -9,7 +9,7 @@ import {
 export default function Home() {
 	return (
 		<div className="flex gap-6 pt-6">
-			<div className="hidden w-[20%] border-2 border-green-400 xl:block">
+			<div className="hidden w-[20%] xl:block">
 				<LeftMenu type={"home"} />
 			</div>
 			<div className="w-full lg:w-[70%] xl:w-[50%]">
