@@ -1,9 +1,25 @@
 import Image from "next/image"
+import { notFound } from "next/navigation"
 
 import { Feed, LeftMenu, RightMenu } from "@/_components/index"
 import faker from "@/_utils/fakerConfig"
 
+import { getUserByUsername, isBlocked } from "./_utils"
+
 const ProfilePage = async ({ params }: { params: { username: string } }) => {
+	const username = params.username
+	const user = await getUserByUsername(username)
+
+	if (!user) {
+		return notFound()
+	}
+
+	const isUserBlocked = await isBlocked(user)
+
+	if (isUserBlocked) {
+		return notFound()
+	}
+
 	return (
 		<div className="flex gap-6 pt-6">
 			<div className="hidden w-[20%] xl:block">

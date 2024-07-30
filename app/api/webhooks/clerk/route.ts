@@ -1,6 +1,9 @@
 import { WebhookEvent } from "@clerk/nextjs/server"
+import { Prisma } from "@prisma/client"
 import { headers } from "next/headers"
 import { Webhook } from "svix"
+
+import prisma from "@/_lib/client"
 
 export async function POST(req: Request) {
 	const WEBHOOK_SECRET = process.env.WEBHOOK_SECRET
@@ -47,10 +50,47 @@ export async function POST(req: Request) {
 		})
 	}
 
-	const { id } = evt.data
-	const eventType = evt.type
-	console.log(`Webhook with and ID of ${id} and type of ${eventType}`)
-	console.log("Webhook body:", body)
+	const { username, image_url } = JSON.parse(body).data
 
-	return new Response("", { status: 200 })
+	if (evt.type === "user.created") {
+		try {
+			const newUser: Prisma.UserCreateInput = {
+				id: evt.data.id,
+				username,
+				avatar: image_url || "/noAvatar.png",
+				cover: "/noCover.png",
+			}
+
+			await prisma.user.create({
+				data: newUser,
+			})
+			return new Response("User has been created", { status: 200 })
+		} catch (err) {
+			return new Response("Failed to create the new user", {
+				status: 500,
+			})
+		}
+	}
+
+	if (evt.type === "user.updated") {
+		try {
+			const updatePayload: Prisma.UserUpdateInput = {
+				username,
+				avatar: image_url || "/noAvatar.png",
+			}
+			await prisma.user.update({
+				where: {
+					id: evt.data.id,
+				},
+				data: updatePayload,
+			})
+			return new Response("User has been updated", { status: 200 })
+		} catch (err) {
+			return new Response("Failed to update the new user", {
+				status: 500,
+			})
+		}
+	}
+
+	return new Response("webhook received", { status: 200 })
 }
