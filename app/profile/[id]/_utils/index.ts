@@ -34,6 +34,5 @@ export const getUserByUsername: GetUserByUsername = async (username) => {
 			},
 		},
 	})
-	console.log("user", user)
 	return user
 }

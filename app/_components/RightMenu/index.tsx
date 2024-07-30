@@ -7,16 +7,17 @@ import {
 	UserInfoCard,
 	UserMediaCard,
 } from "./components"
+import { RightMenuProps } from "./types"
 
-export const RightMenu = ({ userId }: { userId: string }) => {
+export const RightMenu = ({ user }: RightMenuProps) => {
 	return (
 		<div className="flex flex-col gap-6">
 			<>
 				<Suspense fallback="loading...">
-					<UserInfoCard />
+					<UserInfoCard user={user} />
 				</Suspense>
 				<Suspense fallback="loading...">
-					<UserMediaCard />
+					<UserMediaCard user={user} />
 				</Suspense>
 			</>
 			<FriendRequests />

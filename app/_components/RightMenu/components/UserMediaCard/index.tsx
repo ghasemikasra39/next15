@@ -3,7 +3,9 @@ import Link from "next/link"
 
 import faker from "@/_utils/fakerConfig"
 
-export const UserMediaCard = async () => {
+import { UserMediaCardProps } from "./types"
+
+export const UserMediaCard = async ({ user }: UserMediaCardProps) => {
 	return (
 		<div className="flex flex-col gap-4 rounded-lg bg-white p-4 text-sm shadow-md">
 			{/* TOP */}
