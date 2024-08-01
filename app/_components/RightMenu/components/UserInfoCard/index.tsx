@@ -92,7 +92,6 @@ export const UserInfoCard = async ({ user }: UserInfoCardProps) => {
 						isFollowing={isFollowing}
 						isFollowingSent={isFollowingSent}
 						isUserBlocked={isUserBlocked}
-						loggedInUserId={loggedInUserId}
 						userId={user.id}
 					/>
 				)}
