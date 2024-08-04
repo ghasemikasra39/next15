@@ -3,6 +3,7 @@ import Link from "next/link"
 
 import { userInfoCardHelper } from "@/_components/RightMenu/components/UserInfoCard/utils"
 
+import { UpdateUser } from "./components/UpdateUser"
 import { UserInfoCardInteraction } from "./components/UserInfoCardInteraction"
 import { UserInfoCardProps } from "./types"
 
@@ -20,9 +21,13 @@ export const UserInfoCard = async ({ user }: UserInfoCardProps) => {
 			{/* TOP */}
 			<div className="flex items-center justify-between font-medium">
 				<span className="text-gray-500">User Information</span>
-				<Link className="text-xs text-blue-500" href="/">
-					See all
-				</Link>
+				{loggedInUserId === user.id ? (
+					<UpdateUser user={user} />
+				) : (
+					<Link className="text-xs text-blue-500" href="/">
+						See all
+					</Link>
+				)}
 			</div>
 			{/* BOTTOM */}
 			<div className="flex flex-col gap-4 text-gray-500">

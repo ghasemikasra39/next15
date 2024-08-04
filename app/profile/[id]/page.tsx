@@ -5,10 +5,9 @@ import { Feed, LeftMenu, RightMenu } from "@/_components/index"
 
 import { getUserByUsername, isBlocked } from "./_utils"
 
-const ProfilePage = async ({ params }: { params: { username: string } }) => {
-	const username = params.username
+const ProfilePage = async (params) => {
+	const username = params.params.id
 	const user = await getUserByUsername(username)
-
 	if (!user) {
 		return notFound()
 	}
