@@ -2,14 +2,15 @@ import React from "react"
 
 import { Post } from "@/_components/index"
 
-export const Feed = () => {
+import { getPostsFromFollowings } from "./utils"
+
+export const Feed = async ({ username }: { username?: string }) => {
+	const { posts } = await getPostsFromFollowings({ username })
 	return (
 		<div className="flex flex-col gap-12 rounded-lg bg-white p-4 shadow-md">
-			<Post />
-			<Post />
-			<Post />
-			<Post />
-			<Post />
+			{posts.length
+				? posts.map((post) => <Post key={post.id} post={post} />)
+				: "No posts found!"}
 		</div>
 	)
 }
