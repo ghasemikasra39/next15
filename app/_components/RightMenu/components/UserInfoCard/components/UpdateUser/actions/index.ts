@@ -5,7 +5,11 @@ import { z } from "zod"
 
 import prisma from "@/_lib/client"
 
-export const updateProfile = async (formData: FormData) => {
+export const updateProfile = async (
+	prevState: { error: boolean; success: boolean },
+	payload: { cover: string; formData: FormData },
+) => {
+	const { formData, cover } = payload
 	const fields = Object.fromEntries(formData)
 
 	const filteredFields = Object.fromEntries(
@@ -23,7 +27,7 @@ export const updateProfile = async (formData: FormData) => {
 		website: z.string().max(60).optional(),
 	})
 
-	const validatedFields = Profile.safeParse(filteredFields)
+	const validatedFields = Profile.safeParse({ ...filteredFields, cover })
 
 	if (!validatedFields.success) {
 		console.log(validatedFields.error.flatten().fieldErrors)
