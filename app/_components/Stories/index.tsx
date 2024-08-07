@@ -1,29 +1,46 @@
-import Image from "next/image"
+import { auth } from "@clerk/nextjs/server"
 import React from "react"
 
-import faker from "@/_utils/fakerConfig"
+import prisma from "@/_lib/client"
 
-export const Stories = () => {
+import { StoryList } from "./components/StoryList"
+
+export const Stories = async () => {
+	const { userId: currentUserId } = auth()
+
+	if (!currentUserId) {
+		return null
+	}
+
+	const stories = await prisma.story.findMany({
+		where: {
+			expiresAt: {
+				gt: new Date(),
+			},
+			OR: [
+				{
+					user: {
+						followers: {
+							some: {
+								followerId: currentUserId,
+							},
+						},
+					},
+				},
+				{
+					userId: currentUserId,
+				},
+			],
+		},
+		include: {
+			user: true,
+		},
+	})
+
 	return (
 		<div className="scrollbar-hide overflow-scroll rounded-lg bg-white p-4 text-xs shadow-md">
 			<div className="flex w-max gap-8">
-				{Array.from({ length: 50 }).map((_, index) => (
-					<div
-						key={index}
-						className="flex cursor-pointer flex-col items-center gap-2"
-					>
-						<Image
-							alt="image"
-							className="h-20 w-20 rounded-full ring-2"
-							height={80}
-							src={faker.image.urlPicsumPhotos()}
-							width={80}
-						/>
-						<span className="font-medium">
-							{faker.person.firstName()}
-						</span>
-					</div>
-				))}
+				<StoryList stories={stories} userId={currentUserId} />
 			</div>
 		</div>
 	)
