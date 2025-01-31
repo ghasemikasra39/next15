@@ -15,6 +15,10 @@ export const BadComponent = () => {
         setCounter(counter + 1); // Bad: Directly using counter may cause stale state issues
     }
 
+    function handleClick() {
+        setCounter(counter + 1); // Bad: Directly using counter may cause stale state issues
+    }
+
     // Bad: Function inside render
     const inlineFunc = (id) => {
         alert("Item clicked: " + id);
