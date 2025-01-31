@@ -35,6 +35,6 @@ export const addPost = async (formData: FormData, img: string) => {
 
 		revalidatePath("/")
 	} catch (err) {
-		console.log(err)
+		console.log("✅✅✅ ===> err", err)
 	}
 }
